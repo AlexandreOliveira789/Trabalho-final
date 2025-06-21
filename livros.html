@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexandria - Catálogo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .livros-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .livros-grid .card {
+      width: 200px;
+      text-align: center;
+      border: none;
+    }
+    .livros-grid .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    #mensagem-erro {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-auto" href="index.html">Alexandria</a>
+      <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link active" href="livros.html">Catálogo</a></li>
+          <li class="nav-item"><a class="nav-link" href="contato.html">Fale Conosco</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container text-center mt-4">
+    <h1>Catálogo de Livros</h1>
+    <input type="text" id="busca" class="form-control my-3" placeholder="Digite o nome do livro...">
+    <p id="mensagem-erro">Livro não encontrado no acervo.</p>
+  </div>
+
+  <div class="livros-grid" id="lista-livros">
+    <div class="card" data-nome="É Assim que Acaba">
+      <a href="assim-que-acaba.html">
+        <img src="AssimQueAcaba2.jpg" alt="É Assim que Acaba">
+        <div class="card-body">
+          <h5 class="card-title">É Assim que Acaba</h5>
+          <p class="card-text">Colleen Hoover</p>
+          <p class="text-muted">Romance</p>
+        </div>
+      </a>
+    </div>
+    <div class="card" data-nome="Os Miseráveis">
+      <a href="os-miseraveis.html">
+        <img src="shopping.webp" alt="Os Miseráveis">
+        <div class="card-body">
+          <h5 class="card-title">Os Miseráveis</h5>
+          <p class="card-text">Victor Hugo</p>
+          <p class="text-muted">Drama</p>
+        </div>
+      </a>
+    </div>
+    <div class="card" data-nome="Crime e Castigo">
+      <a href="CrimeECastigo.html">
+        <img src="C&C.jpg" alt="Crime e Castigo">
+        <div class="card-body">
+          <h5 class="card-title">Crime e Castigo</h5>
+          <p class="card-text">Fiódor Dostoiévski</p>
+          
+        </div>
+      </a>
+    </div>
+    <div class="card" data-nome="Dom Casmurro">
+      <a href="dom-casmurro.html">
+        <img src="DCasmurro.jpg" alt="Dom Casmurro">
+        <div class="card-body">
+          <h5 class="card-title">Dom Casmurro</h5>
+          <p class="card-text">Machado de Assis</p>
+          <p class="text-muted">Clássico</p>
+        </div>
+      </a>
+    </div>
+    <div class="card" data-nome="O conto de Aia">
+      <a href="aia.html">
+        <img src="Aia.jpg" alt="Aia">
+        <div class="card-body">
+          <h5 class="card-title">O conto da aia</h5>
+          <p class="card-text">Fiódor Dostoiévski</p>
+          
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const inputBusca = document.getElementById('busca');
+    const livros = document.querySelectorAll('.livros-grid .card');
+    const mensagemErro = document.getElementById('mensagem-erro');
+
+    inputBusca.addEventListener('input', () => {
+      const termo = inputBusca.value.toLowerCase();
+      let encontrados = 0;
+
+      livros.forEach(livro => {
+        const nomeLivro = livro.getAttribute('data-nome').toLowerCase();
+        if (nomeLivro.includes(termo)) {
+          livro.style.display = 'block';
+          encontrados++;
+        } else {
+          livro.style.display = 'none';
+        }
+      });
+
+      mensagemErro.style.display = encontrados === 0 ? 'block' : 'none';
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
